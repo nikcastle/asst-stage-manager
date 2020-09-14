@@ -1,16 +1,15 @@
 import React from "react";
 import { Col, Row, Container } from "reactstrap";
-import Jumbotron from "../components/Jumbotron";
-import Footer from "../components/Footer";
+// import Jumbotron from "../components/Jumbotron";
+// import Footer from "../components/Footer";
 
 function NoMatch() {
   return (
     <Container fluid>
       <Row>
         <Col size="md-12">
-          <Jumbotron>
+          {/* <Jumbotron /> */}
             
-          </Jumbotron>
         </Col>
       </Row>
       <Row>
@@ -19,7 +18,7 @@ function NoMatch() {
               </span></h1>
       </Row>
      
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   );
 }
