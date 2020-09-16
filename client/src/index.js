@@ -1,10 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDom from "react-dom";
 import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 import {BrowserRouter} from "react-router-dom";
 import config from "./auth_config.json";
 import history from "./utils/history";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const onRedirectCallback = (appState) => {
   history.push(
@@ -14,7 +15,7 @@ const onRedirectCallback = (appState) => {
   );
 };
 
-ReactDOM.render(
+ReactDom.render(
   <BrowserRouter>
     <Auth0Provider
       domain={config.domain}
