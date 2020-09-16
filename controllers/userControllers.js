@@ -29,7 +29,7 @@ module.exports = {
   populateList: function (req, res) {
 
     db.Users.findOne({ id: req.params.id })
-      .populate("groceryList")
+      .populate("productions")
       .then(dbUser => {
         res.json(dbUser);
       })
