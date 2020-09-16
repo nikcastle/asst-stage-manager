@@ -13,7 +13,6 @@ const userSchema = new Schema({
    productions: [
         {
             type: String,
-            showName: "",
         }
     ],
 
