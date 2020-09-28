@@ -20,6 +20,10 @@ export default {
     },
 
     addNote: (id, currentUser) => {
+        return axios.post(`/api/notes/item/${id}?currentUser=${currentUser}`)
+    },
+
+    getNotes: (id, currentUser) => {
         return axios.get(`/api/notes/item/${id}?currentUser=${currentUser}`)
     },
 

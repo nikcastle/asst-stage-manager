@@ -64,7 +64,10 @@ const NavBar = () => {
   return (
     <NavStyle>
       <div>
-        <Navbar className="navbar">
+        <Navbar 
+        expand="md"
+        className="navbar"
+        >
         <img src="./logo.png" className="logo" alt="logo" />
           {/* <Link to ="/Home">HOME </Link> */}
           <NavbarToggler onClick={toggle} className="hamburger" />

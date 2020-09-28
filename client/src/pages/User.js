@@ -4,10 +4,11 @@ import { NavLink as RouterNavLink, Link } from "react-router-dom";
 import { Button, Card, Container, Col, Row, } from "reactstrap"
 import NavBar from "../components/navbar";
 import AddProduction from "../components/addProduction";
+import NoteCard from "../components/NoteCard";
 // import Footer from "../components/Footer";
 // import SearchBar from "../components/SearchBar";
 import styled from "styled-components";
-// import API from "../utils/API";
+import API from "../utils/API";
 // import Grocerylist from "../components/GroceryList";
 // import Converter from "../utils/Conversion";
 // import CarIcon from "../components/CarIcon";
@@ -61,13 +62,12 @@ const User = () => {
   
   //Variables and States
   const { user, isAuthenticated } = useAuth0();
-//   const [searchResults, setSearchResults] = useState([])
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [groceryList, setGroceryList] = useState([]);
-//   const [totalGHG, setTotalGHG] = useState(0)
+
+  const [notes, setNotes] = useState([]);
+
   const currentUser = user.sub;
 
-  let productions;
+  const [productions, setProductions] = useState([]);
 
   // => if user then populate else => create user
 //   useEffect(() => {
@@ -127,12 +127,6 @@ const User = () => {
 //       .catch(err => console.log(err))
 //   }
 
-//   const calculateGHG = (list) => {
-//     let totalG = list.reduce((a, b) => {
-//       return { ghgEmission: a.ghgEmission + b.ghgEmission }
-//     })
-//     setTotalGHG(totalG.ghgEmission);
-//   }
 
 //   const removeFromGroceryList = (event, id) => {
 //     event.preventDefault();
@@ -147,6 +141,18 @@ const User = () => {
 //           .catch(err => console.log(err))
 //       })
 //   }
+
+  useEffect(() => {
+    loadNotes();
+  }, []);
+
+  function loadNotes() {
+    // Add code here to get all Notes from the database and store them using setNotes
+    API.getNotes()
+      .then(res => setNotes(res.data))
+      .catch(err => console.log(err));
+      
+  }
 
   return (
     isAuthenticated && (
@@ -176,14 +182,23 @@ const User = () => {
                   <Col>
                   <p>Your Rehearsal Notes</p>
                   </Col>
-                  <Col>
-                     <Button to ="/Notes">Add a new note</Button>
-                  </Col>
               </Row>
               {/* If there are search results, map through them to create a card for each item in the array. Otherwise note no items were found*/}
               <Row>
-                
+                {notes ? (notes.map(note => (
+                   <Col md={3} key={note.id}>
+                   <NoteCard
+                     title={note.title}
+                     text={note.text}
+                     production={note.production}
+                     id={note.id}
+                    />
+                    </Col>
+                ))): <div></div>}
               </Row>
+
+              <Button to ="/Notes">Add a new note</Button>
+
             </div>
           </Div>
 
